@@ -1,18 +1,21 @@
 "use client";
 
 import React from "react";
-import Head from "next/head";
 import Script from "next/script";
 import Link from "next/link";
+import Image from "next/image";
 import Layout from "@/components/Layout";
 import "@/styles/global.css";
 
-export default function Post1() {
+type paramsPropsType = {
+  params: {
+    number: number;
+  };
+};
+
+export default function Post({ params }: paramsPropsType) {
   return (
     <>
-      <Head>
-        <title>First Post</title>
-      </Head>
       <Script
         src="https://connect.facebook.net/en_US/sdk.js"
         strategy="lazyOnload"
@@ -21,7 +24,13 @@ export default function Post1() {
         }
       />
       <Layout>
-        <div>post1 page</div>
+        <div>post{params.number} page</div>
+        <Image
+          src="/images/family.jpg" // Route of the image file
+          height={144} // Desired size with correct aspect ratio
+          width={144} // Desired size with correct aspect ratio
+          alt="test image"
+        />
         <Link href="/home">back to home</Link>
       </Layout>
     </>
